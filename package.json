@@ -2,7 +2,7 @@
   "name": "akash-backend",
   "version": "1.0.0",
   "description": "backend enthusiast",
-  "type": "commonjs",
+  "type": "module",
   "keywords": [
     "javascript",
     "backend"
@@ -11,9 +11,14 @@
   "author": "Akash Prajapati",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mongoose": "^8.17.1"
   }
 }
