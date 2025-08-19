@@ -19,4 +19,10 @@ app.use(express.urlencoded({extended:true,limit:"16kb"}))
 //files or images jo aate h unhe store krne k liye
 app.use(express.static("public"))
 
+
+//routes import 
+import userRouter from "./routes/user.routes.js"
+
+app.use("/api/v1/users",userRouter)
+
 export default app;

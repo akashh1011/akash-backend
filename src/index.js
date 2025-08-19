@@ -11,8 +11,8 @@ app.on("Error",(err)=>{
   console.log("Error",err)
 })
 
-  app.listen(process.env.MONGO_URI || 9000,()=>{
-    console.log(`server is running on port: ${process.env.MONGO_URI}`)
+  app.listen(process.env.PORT || 9000,()=>{
+    console.log(`server is running on port: ${process.env.PORT}`)
   })
 })
 .catch((err)=>{
