@@ -16,7 +16,7 @@ app.on("Error",(err)=>{
   })
 })
 .catch((err)=>{
-    console.log("MongoDB Connection failed",err)
+    console.log("MongoDB Connection Failed",err)
   })
 
 // import mongoose from "mongoose";
