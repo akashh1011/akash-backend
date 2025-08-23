@@ -1,7 +1,7 @@
 //yhi file hme file ya other media upload krne degi 
 import { v2 as cloudinary } from "cloudinary";
 import { response } from "express";
-import * as fs from 'node:fs/promises';
+import fs from "fs"
 
 
 cloudinary.config({
@@ -16,7 +16,9 @@ const uploadOnCloudinary = async (localFilePath)=>{
   const response = await cloudinary.uploader.upload(localFilePath,{resource_type:"auto"})
 
   // file has been successfuly uploaded
-  console.log("File has been successfulyy uploaded on cloudinary",response.url)
+  // console.log("File has been successfulyy uploaded on cloudinary",response.url)
+  
+  fs.unlinkSync(localFilePath)
   return response;
 }
     

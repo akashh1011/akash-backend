@@ -6,28 +6,31 @@ import {ApiResponse} from "../utils/ApiResponse.utils.js"
 
 const registerUser = asyncHandler(async (req,res,next)=>{
   const {fullname,email,username,password} = req.body
-  console.log({
-    email,
-    fullname,
-    username
-  })
+  // console.log({
+  //   email,
+  //   fullname,
+  //   username
+  // })
 
   if([fullname,email,username,password].some((field)=>field?.trim() === "")){
     throw new ApiError(400,"All fields are required")
   }
 
-  const existedUser = User.findOne({
+  const existedUser = await User.findOne({
     $or:[{ username },{ email }]
   })
   if(existedUser){
     throw new ApiError(409,"Username or email already existed")
   }
-})
 
-// check for images , check avatar
+  // check for images , check avatar
 
 const avatarLocalPath = req.files?.avatar[0]?.path;
-const coverImageLocalPath = req.files?.coverImage[0]?.path;
+// const coverImageLocalPath = req.files?.coverImage[0]?.path;
+let coverImageLocalPath
+if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length>0){
+  coverImageLocalPath=req.files.coverImage[0].path
+}
 
 //validation for avatar
 if(!avatarLocalPath){
@@ -63,5 +66,8 @@ if(!createdUser){
 return res.status(201).json(
   new ApiResponse (200,createdUser,"User registered successfully")
 )
+})
+
+
 
 export {registerUser}

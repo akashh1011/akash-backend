@@ -1,5 +1,5 @@
 import mongoose,{Schema} from "mongoose"
-import { JsonWebToken } from "jsonwebtoken"
+import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 
 const userSchema = new Schema({
@@ -39,7 +39,7 @@ const userSchema = new Schema({
 
   watchHistory:[ {
     types:Schema.Types.ObjectId,
-    ref:"Video"
+    //ref:"Video"
   }],
 
   password:{
